@@ -1,0 +1,12 @@
+<%= form_for @product, url: {action: "create"} do |p| %>
+	Product code:
+	<%= p.number_field :product_code %>
+	<br/>
+	Title:
+	<%= p.text_field :title %>
+	<br/>
+	Description
+	<%= p.text_field :description %>
+	<br/>
+	<%= p.submit %>
+<% end %>
