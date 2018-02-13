@@ -56,3 +56,5 @@ gem "clearance"
 #https://github.com/thoughtbot/clearance
 
 gem "pg", "~> 0.18"
+
+gem 'byebug'
