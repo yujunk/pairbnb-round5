@@ -37,3 +37,6 @@ class ProductsController < ApplicationController
 		params.require(:product).permit(:product_code, :title, :description)
 	end
 end
+
+
+#Note: also had legacy issues with changing from postgresql to sqlite3. Had to drop tables and re create/migrate: https://stackoverflow.com/questions/19097558/pg-undefinedtable-error-relation-users-does-not-exist

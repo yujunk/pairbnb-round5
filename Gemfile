@@ -58,3 +58,5 @@ gem "clearance"
 gem "pg", "~> 0.18"
 
 gem 'byebug'
+
+gem "figaro"
