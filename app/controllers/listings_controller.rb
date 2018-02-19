@@ -18,6 +18,12 @@ class ListingsController < ApplicationController
 	end
 
 	def index
+		if params[:search]
+			@listings = Listing.where(location: params[:search])
+		else
+			@listings = Listing.all
+		end
+
 		@listings = Listing.all
 	end
 

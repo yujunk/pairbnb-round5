@@ -1,5 +1,15 @@
 <h2> All Listings </h2>
 
+<h5> Search By: </h5>
+<%= form_tag listings_path, :method => 'get' do %>
+  <p>
+    Location: <%= text_field_tag :search %>
+    <%= submit_tag "Search", :name => nil%>
+  </p>
+<% end %>
+
+<h5> All Listings - To be edited: </h5>
+
 <table>
 	<tr>
 		<th> Id </th>
