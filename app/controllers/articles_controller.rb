@@ -4,7 +4,7 @@ class ArticlesController < ApplicationController
 	def new
 	end
 
-	def index
-		current_user.articles 
-	end
 end
+
+#This page is not necessary
+#@before_action - is for special login needs

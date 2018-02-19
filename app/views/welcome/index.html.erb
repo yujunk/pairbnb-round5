@@ -1,4 +1,9 @@
-<h1>Hello, Rails!</h1>
-<p>Find me in app/views/welcome/Index.html.erb</p>
+<h1>Welcome to Jun's Test Pairbnb!</h1>
 
-<%= link_to "Sign in with Facebook", "/auth/facebook" %>
+Please sign in here:
+<ul>
+	<li> Sign in with <%= link_to "Facebook", "/auth/facebook" %> </li>
+	<li> Sign in with <%= link_to "Onsite Logins", "/sign_in" %> </li>
+</ul>
+
+View all existing listings <%= link_to "here", "/listings" %>

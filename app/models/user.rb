@@ -1,13 +1,14 @@
 class User < ApplicationRecord
   include Clearance::User
   has_many :authentications, dependent: :destroy
-
+  has_many :listings, dependent: :destroy
 
 	 def self.create_with_auth_and_hash(authentication, auth_hash)
 	   user = self.create!(
 	     name: auth_hash["name"],
 	     email: auth_hash["extra"]["raw_info"]["email"],
-	     gender: auth_hash["gender"]
+	     gender: auth_hash["gender"],
+	     password: SecureRandom.hex(10)
 	   )
 	   user.authentications << authentication
 	   return user
@@ -19,4 +20,7 @@ class User < ApplicationRecord
 	   return x.token unless x.nil?
 	 end
 
-end#https://github.com/mkdynamic/omniauth-facebook#configuring
+end
+
+#https://github.com/mkdynamic/omniauth-facebook#configuring
+

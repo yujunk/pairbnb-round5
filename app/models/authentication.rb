@@ -14,3 +14,7 @@ class Authentication < ApplicationRecord
     self.save
   end
 end
+
+
+
+#https://stackoverflow.com/questions/18384558/how-to-fix-blank-email-error-when-user-signs-up-with-facebook-through-omniauth
