@@ -70,3 +70,5 @@ gem 'bootstrap', '~> 4.0.0'
 gem 'jquery-rails'
 
 gem 'carrierwave', '~> 1.0'
+
+gem 'fog'
