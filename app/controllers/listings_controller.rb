@@ -2,6 +2,8 @@ class ListingsController < ApplicationController
 
 	def new
 		@listing = Listing.new
+		@uploader = ImageUploader.new
+
 		#creating a listing object, temporarily - so that the @form in the html file can actually display
 		#give me a husk, but not saving into database 
 
@@ -10,9 +12,11 @@ class ListingsController < ApplicationController
 
 	def create
 		@listing = Listing.new(listing_params)
+		@uploader = ImageUploader.new(params[:image])
+
+		@listing.save
 		#@listing.user_id = current_user.id
 		## ^Method 1 for saving user id to listing - https://stackoverflow.com/questions/8472370/how-to-pass-devises-current-user-as-user-id
-		@listing.save
 		#and then try .new & .save if create doesnt work
 		redirect_to "/", notice: "Listing saved!"
 	end
@@ -24,7 +28,7 @@ class ListingsController < ApplicationController
 			@listings = Listing.all
 		end
 
-		@listings = Listing.order(price_per_night: :desc).page params[:page]
+		@listings = Listing.order(id: :desc).page params[:page]
 
 		#http://api.rubyonrails.org/classes/ActiveRecord/QueryMethods.html#method-i-order
 		#https://github.com/amatsuda/kaminari
@@ -61,8 +65,7 @@ class ListingsController < ApplicationController
 	def listing_params
 		#params.require(:listing).permit(:title, :description, :price_per_night, :smoking, :location)
 		## ^Method 1
-		byebug
-		params.require(:listing).permit(:title, :description, :price_per_night, :smoking, :location, :user_id, amenities: [])
+		params.require(:listing).permit(:title, :description, :price_per_night, :smoking, :location, :user_id, :image, amenities: [])
 		## ^Method 2, just add :current_user.id into permitted params
 
 		#Note 1: .save initiates created_at and updated_at. Handled by Rails.

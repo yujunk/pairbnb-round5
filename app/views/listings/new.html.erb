@@ -29,6 +29,9 @@
 	<br/>
 	- Pool <%= p.check_box :amenities, {multiple: true}, "pool", nil %>
 	<br/>
+	Upload Image here:
+	<%= p.file_field :image %>
+	<br/>
 	<%= p.submit %>
 <% end %>
 
