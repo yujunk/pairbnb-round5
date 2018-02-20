@@ -24,7 +24,26 @@ class ListingsController < ApplicationController
 			@listings = Listing.all
 		end
 
-		@listings = Listing.all
+		@listings = Listing.order(price_per_night: :desc).page params[:page]
+
+		#http://api.rubyonrails.org/classes/ActiveRecord/QueryMethods.html#method-i-order
+		#https://github.com/amatsuda/kaminari
+	end
+
+	def edit
+		# authorization code
+      if current_user.customer?
+        flash[:notice] = "Sorry. You are not allowed to perform this action."
+        return redirect_to listings_path, notice: "Sorry. You do not have the permission to verify a property."
+      else
+      	@listing = Listing.find(params[:id])
+      	#find_by, find, where etc - looks through database AND returns an object (with all the attributes). So this object can be passed into @listing
+      end
+      # end authorization code
+	end
+
+	def update
+		Test
 	end
 
 	private

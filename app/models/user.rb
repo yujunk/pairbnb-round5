@@ -3,6 +3,9 @@ class User < ApplicationRecord
   has_many :authentications, dependent: :destroy
   has_many :listings, dependent: :destroy
 
+  enum role: [:customer, :moderator, :admin]
+  #http://api.rubyonrails.org/classes/ActiveRecord/Enum.html
+
 	 def self.create_with_auth_and_hash(authentication, auth_hash)
 	   user = self.create!(
 	     name: auth_hash["name"],

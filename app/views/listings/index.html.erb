@@ -3,10 +3,14 @@
 <h5> Search By: </h5>
 <%= form_tag listings_path, :method => 'get' do %>
   <p>
-    Location: <%= text_field_tag :search %>
+    Location: <%= text_field_tag :search, params[:search] %>
     <%= submit_tag "Search", :name => nil%>
+    <!-- params[:search] is to make sure form field stays after search is performend. 
+    :name => nil is making sure the URL comes back with no commit="xxx" -->
   </p>
 <% end %>
+<!--OLD: http://railscasts.com/episodes/37-simple-search-form?autoplay=true -->
+<!--NEW: https://rubyplus.com/articles/3381-Simple-Search-Form-in-Rails-5 -->
 
 <h5> All Listings - To be edited: </h5>
 
@@ -19,6 +23,7 @@
 		<th> Price/Night </th>
 		<th> Smoking </th>
 		<th> By User </th>
+		<th> Edit (Permissions needed) </th>
 	</tr>
 	<% @listings.each do |listing| %>
 		<tr>	
@@ -29,7 +34,11 @@
 			<td> <%= listing.price_per_night %> </td>
 			<td> <%= listing.smoking %> </td>
 			<td> <%= listing.user.name %> </td>
+			<td> <%= link_to 'Edit', edit_listing_path(listing) %> </td>
+			<!-- they know to take the id only with (listing) when you insert it into the edit_listing_path Rails method, so if you look at listings controller, all you need to say is params[:id] to pass it to html -->
+
 		</tr>
 	<% end %>
 </table>
+<%= paginate @listings %>
 
