@@ -14,7 +14,7 @@ class ListingsController < ApplicationController
 		## ^Method 1 for saving user id to listing - https://stackoverflow.com/questions/8472370/how-to-pass-devises-current-user-as-user-id
 		@listing.save
 		#and then try .new & .save if create doesnt work
-		redirect_to "/" 
+		redirect_to "/", notice: "Listing saved!"
 	end
 
 	def index
@@ -30,20 +30,30 @@ class ListingsController < ApplicationController
 		#https://github.com/amatsuda/kaminari
 	end
 
+	## Before refactoring:
+	# def edit
+	# 	# authorization code
+ #      if current_user.customer?
+ #        flash[:notice] = "Sorry. You are not allowed to perform this action."
+ #        return redirect_to listings_path, notice: "Sorry. You do not have the permission to verify a property."
+ #      else
+ #      	@listing = Listing.find(params[:id])
+ #      	#find_by, find, where etc - looks through database AND returns an object (with all the attributes). So this object can be passed into @listing
+ #      end
+ #      # end authorization code
+	# end
+
+	## After refactoring - moved to Application controller:
 	def edit
-		# authorization code
-      if current_user.customer?
-        flash[:notice] = "Sorry. You are not allowed to perform this action."
-        return redirect_to listings_path, notice: "Sorry. You do not have the permission to verify a property."
-      else
-      	@listing = Listing.find(params[:id])
-      	#find_by, find, where etc - looks through database AND returns an object (with all the attributes). So this object can be passed into @listing
-      end
-      # end authorization code
+		allowed?(action: @listing, user: current_user)
+		@listing = Listing.find(params[:id])
 	end
 
 	def update
-		Test
+		@listing = Listing.find(params[:id])
+		@listing.update(update_listing_params)
+
+		redirect_to listings_path
 	end
 
 	private
@@ -51,11 +61,16 @@ class ListingsController < ApplicationController
 	def listing_params
 		#params.require(:listing).permit(:title, :description, :price_per_night, :smoking, :location)
 		## ^Method 1
-		params.require(:listing).permit(:title, :description, :price_per_night, :smoking, :location, :current_user.id, :current_user.name)
+		byebug
+		params.require(:listing).permit(:title, :description, :price_per_night, :smoking, :location, :user_id, amenities: [])
 		## ^Method 2, just add :current_user.id into permitted params
 
 		#Note 1: .save initiates created_at and updated_at. Handled by Rails.
 		#Note 2: listing_params is a Rails feature, not Clearance.
+	end
+
+	def update_listing_params
+		params.require(:listing).permit(:title, :description, :price_per_night, :smoking, :location)
 	end
 
 end

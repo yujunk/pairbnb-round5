@@ -64,3 +64,7 @@ gem "omniauth-facebook"
 gem 'faker', :git => 'https://github.com/stympy/faker.git', :branch => 'master'
 
 gem 'kaminari'
+
+gem 'bootstrap', '~> 4.0.0'
+
+gem 'jquery-rails'

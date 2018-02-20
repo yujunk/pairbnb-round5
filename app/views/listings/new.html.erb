@@ -3,7 +3,9 @@
 <%= form_for @listing, url: {action: "create"} do |p| %>
 
 <%= p.hidden_field :user_id, :value => current_user.id %>
-	
+<!-- user_id is the name of the field or key, just like :title. -->
+<!-- value is set to current_user.id that matches up to the name "user_id". So technically in text_field, we could have paired it with a pre-defined value -->
+
 	Title:
 	<%= p.text_field :title %>
 	<br/>
@@ -18,9 +20,15 @@
 	<br/>
 	Smoking (Use 1 for yes, 0 for no):
 	<%= p.number_field :smoking %>
-	<!-- binary field? -->
-	Amenities
-	<%= p.check_box(create, )
+	<br/>
+	Amenities:
+	<br/>
+	- Gym <%= p.check_box :amenities, {multiple: true}, "gym", nil %>
+	<br/>
+	- Sauna <%= p.check_box :amenities, {multiple: true}, "sauna", nil %>
+	<br/>
+	- Pool <%= p.check_box :amenities, {multiple: true}, "pool", nil %>
+	<br/>
 	<%= p.submit %>
 <% end %>
 
