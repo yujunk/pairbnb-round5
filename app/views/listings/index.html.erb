@@ -6,6 +6,7 @@ Create new listing <%= link_to "here", "/listings/new" %>
 <%= form_tag listings_path, :method => 'get' do %>
   <p>
     Location: <%= text_field_tag :search, params[:search] %>
+                          <!-- ^method name, ^value that will appear that you typed previously -->
     <%= submit_tag "Search", :name => nil%>
     <!-- params[:search] is to make sure form field stays after search is performend. 
     :name => nil is making sure the URL comes back with no commit="xxx" -->
@@ -14,7 +15,7 @@ Create new listing <%= link_to "here", "/listings/new" %>
 <!--OLD: http://railscasts.com/episodes/37-simple-search-form?autoplay=true -->
 <!--NEW: https://rubyplus.com/articles/3381-Simple-Search-Form-in-Rails-5 -->
 
-<h5> All Listings - To be edited: </h5>
+<h5> All Listings </h5>
 
 <table>
 	<tr>
@@ -26,7 +27,8 @@ Create new listing <%= link_to "here", "/listings/new" %>
 		<th> Smoking </th>
 		<th> By User </th>
     <th> Image </th>
-		<th> Edit (Permissions needed) </th>
+    <th> Book </th>
+    <th> Edit (Permissions needed) </th>
 	</tr>
 	<% @listings.each do |listing| %>
 		<tr>	
@@ -38,6 +40,7 @@ Create new listing <%= link_to "here", "/listings/new" %>
 			<td> <%= listing.smoking %> </td>
 			<td> <%= listing.user.name %> </td>
       <td> <img src ="<%= listing.image_url.to_s %>" width="100" height="100"> </td>
+      <td> <%= link_to 'Book', new_listing_reservations_path(listing) %></td>
 			<td> <%= link_to 'Edit', edit_listing_path(listing) %> </td>
 			<!-- they know to take the id only with (listing) when you insert it into the edit_listing_path Rails method, so if you look at listings controller, all you need to say is params[:id] to pass it to html -->
 

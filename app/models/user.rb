@@ -2,6 +2,7 @@ class User < ApplicationRecord
   include Clearance::User
   has_many :authentications, dependent: :destroy
   has_many :listings, dependent: :destroy
+  has_many :reservations
 
   enum role: [:customer, :moderator, :admin]
   #http://api.rubyonrails.org/classes/ActiveRecord/Enum.html

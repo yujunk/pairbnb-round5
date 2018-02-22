@@ -72,3 +72,5 @@ gem 'jquery-rails'
 gem 'carrierwave', '~> 1.0'
 
 gem 'fog'
+
+gem 'braintree'

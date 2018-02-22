@@ -2,7 +2,7 @@ class ListingsController < ApplicationController
 
 	def new
 		@listing = Listing.new
-		@uploader = ImageUploader.new
+		# @uploader = ImageUploader.new #didint do anything
 
 		#creating a listing object, temporarily - so that the @form in the html file can actually display
 		#give me a husk, but not saving into database 
@@ -12,7 +12,7 @@ class ListingsController < ApplicationController
 
 	def create
 		@listing = Listing.new(listing_params)
-		@uploader = ImageUploader.new(params[:image])
+		# @uploader = ImageUploader.new(params[:image]) #didint do anything
 
 		@listing.save
 		#@listing.user_id = current_user.id

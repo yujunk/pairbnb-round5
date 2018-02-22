@@ -8,6 +8,10 @@ class UsersController < Clearance::UsersController
 		redirect_to "/sign_in"
 	end
 
+  def user_listing
+    @user_listings = current_user.listings
+  end
+
 	private 
 
 	def user_params
