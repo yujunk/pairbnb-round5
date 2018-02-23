@@ -1,0 +1,37 @@
+<h2> List Your Property </h2> 
+
+<%= form_for @listing, url: {action: "create"} do |p| %>
+
+<%= p.hidden_field :user_id, :value => current_user.id %>
+<!-- user_id is the name of the field or key, just like :title. -->
+<!-- value is set to current_user.id that matches up to the name "user_id". So technically in text_field, we could have paired it with a pre-defined value -->
+
+	Title:
+	<%= p.text_field :title %>
+	<br/>
+	Location:
+	<%= p.text_field :location %>
+	<br/>
+	Description:
+	<%= p.text_field :description %>
+	<br/>
+	Price Per Night:
+	<%= p.number_field :price_per_night %>
+	<br/>
+	Smoking (Use 1 for yes, 0 for no):
+	<%= p.number_field :smoking %>
+	<br/>
+	Amenities:
+	<br/>
+	- Gym <%= p.check_box :amenities, {multiple: true}, "gym", nil %>
+	<br/>
+	- Sauna <%= p.check_box :amenities, {multiple: true}, "sauna", nil %>
+	<br/>
+	- Pool <%= p.check_box :amenities, {multiple: true}, "pool", nil %>
+	<br/>
+	Upload Image here:
+	<%= p.file_field :image %>
+	<br/>
+	<%= p.submit %>
+<% end %>
+
