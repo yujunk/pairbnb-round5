@@ -15,7 +15,9 @@ View all existing listings <%= link_to "here", listings_path %>
 Create new listing <%= link_to "here", new_listing_path %>
 <br/>
 <p>
-View your trip reservations <%= link_to "here", user_reservations_path(current_user) %>
-<br/>
-View reservations on your listing <%= link_to "here", user_listing_path(current_user) %>
+<% if current_user %>
+  View your trip reservations <%= link_to "here", user_reservations_path(current_user) %>
+  <br/>
+  View reservations on your listing <%= link_to "here", user_listing_path(current_user) %>
+<% end %>
 </p>
