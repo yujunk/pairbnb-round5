@@ -1,0 +1,28 @@
+<h2>Your Reservations </h2>
+
+<table>
+  <tr>
+    <th> Id </th>
+    <th> Title </th>
+    <th> Location </th>
+    <th> Price/Night </th>
+    <th> By User </th>
+    <th> Check In </th>
+    <th> Check Out </th>
+    <th> Image </th>
+    <th> Modify Booking </th>
+  </tr>
+<% @user_reservations.each do |reservation| %>
+  <tr>  
+    <td> <%= reservation.id %> </td>
+    <td> <%= reservation.listing.title %> </td>
+    <td> <%= reservation.listing.location %> </td>
+    <td> <%= reservation.listing.price_per_night %> </td>
+    <td> <%= reservation.listing.user.name %> </td>
+    <td> <%= reservation.start_date %></td>
+    <td> <%= reservation.end_date %></td>
+    <td> <img src ="<%= reservation.listing.image_url.to_s %>" width="100" height="100"> </td>
+    <td> link here </td>
+  </tr>
+<% end %>
+</table>

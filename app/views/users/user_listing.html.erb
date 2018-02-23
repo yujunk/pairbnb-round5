@@ -1,0 +1,27 @@
+<!-- NOT COMPLETE -->
+<h2> Your Booked Listings </h2>
+
+<table>
+  <tr>
+    <th> Id </th>
+    <th> Title </th>
+    <th> Price/Night </th>
+    <th> Image </th>
+    <th> Guest </th>
+    <th> Check In </th>
+    <th> Check Out </th>
+  </tr>
+<% @user_listings.each do |l| %>
+  <tr>  
+    <% byebug %>
+    <td> <%= l.id %> </td>
+    <td> <%= l.title %> </td>
+    <td> <%= l.price_per_night %> </td>
+    <td> <img src ="<%= l.image_url.to_s %>" width="100" height="100"> </td>
+    <td> <%#= l.reservation.start_date %></td>
+    <td> <%#= l.reservation.end_date %></td>
+    <td> link here </td>
+  </tr>
+<% end %>
+</table>
+

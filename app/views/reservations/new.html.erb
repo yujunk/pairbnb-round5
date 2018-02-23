@@ -1,0 +1,32 @@
+<h2>Make a New Reservations</h2>
+
+You are now booking
+<ul>
+  <li> Property name: <%= @listing.title %> </li>
+  <li> id: <%= @listing.id %> </li>
+  <li> location: <%= @listing.location %></li>
+</ul>
+
+<%= form_for @reservation, url: {action: "create"} do |p| %>
+
+<%= p.hidden_field :listing_id, :value => @listing.id %>
+
+  Choose your dates:
+  <p>
+  Start date:
+    <%= p.text_field :start_date %>
+  </p>
+
+  <p>
+  End date:
+    <%= p.text_field :end_date %>
+  </p>
+
+  <p>
+    <%= p.submit %>
+  </p>
+
+ <% end %>
+
+
+

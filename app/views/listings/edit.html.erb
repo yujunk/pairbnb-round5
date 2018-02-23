@@ -1,0 +1,21 @@
+<h2> Edit Property </h2> 
+
+<%= form_for @listing, url: {action: "update"} do |p| %>
+
+<%= p.hidden_field :user_id, :value => current_user.id %>
+	
+	Title:
+	<%= p.text_field :title %>
+	<br/>
+	Location:
+	<%= p.text_field :location %>
+	<br/>
+	Description:
+	<%= p.text_field :description %>
+	<br/>
+	Price Per Night:
+	<%= p.number_field :price_per_night %>
+	<br/>
+	<%= p.submit %>
+<% end %>
+

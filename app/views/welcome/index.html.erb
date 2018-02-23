@@ -1,0 +1,21 @@
+<h1>Welcome to Jun's Test Pairbnb!</h1>
+
+<% flash.each do |key, value| -%>
+  <div class="<%= flash_class(key) %>"><%= value %></div>
+<% end %>
+
+Please sign in here:
+<ul>
+	<li> Sign in with <%= link_to "Facebook", "/auth/facebook" %> </li>
+	<li> Sign in with <%= link_to "Onsite Logins", "/sign_in" %> </li>
+</ul>
+
+View all existing listings <%= link_to "here", listings_path %>
+<br/>
+Create new listing <%= link_to "here", new_listing_path %>
+<br/>
+<p>
+View your trip reservations <%= link_to "here", user_reservations_path(current_user) %>
+<br/>
+View reservations on your listing <%= link_to "here", user_listing_path(current_user) %>
+</p>
