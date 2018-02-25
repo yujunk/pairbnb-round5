@@ -57,8 +57,6 @@ gem "clearance"
 
 gem "pg", "~> 0.18"
 
-gem "figaro"
-
 gem "omniauth-facebook"
 
 gem 'faker', :git => 'https://github.com/stympy/faker.git', :branch => 'master'
@@ -74,3 +72,5 @@ gem 'carrierwave', '~> 1.0'
 gem 'fog'
 
 gem 'braintree'
+
+gem 'figaro'

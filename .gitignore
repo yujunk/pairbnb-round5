@@ -22,5 +22,7 @@
 
 .byebug_history
 
-# Ignore application configuration - this will ensure that your application.yml is NOT tracked by git!
+
+
+# Ignore application configuration
 /config/application.yml
