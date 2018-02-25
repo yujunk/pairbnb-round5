@@ -10,5 +10,15 @@
 #   stripe_api_key: sk_live_EeHnL644i6zo4Iyq4v1KdV9H
 #   stripe_publishable_key: pk_live_9lcthxpSIHbGwmdO941O1XVU
 
+FACEBOOK_APP_KEY: '12345'
+FACEBOOK_APP_SECRET: '12345' 
 
-HELLO
+# aws_access_key_id: '12345' 
+# aws_secret_access_key: '12345' 
+
+# BRAINTREE_MERCHANT_ID: '12345'
+# BRAINTREE_PUBLIC_KEY: '12345'
+# BRAINTREE_PRIVATE_KEY: '12345'
+
+MAILER_EMAIL: '12345@gmail.com'
+MAILER_PASSWORD: '12345'
