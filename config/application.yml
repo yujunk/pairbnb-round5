@@ -10,6 +10,7 @@
 #   stripe_api_key: sk_live_EeHnL644i6zo4Iyq4v1KdV9H
 #   stripe_publishable_key: pk_live_9lcthxpSIHbGwmdO941O1XVU
 
+
 FACEBOOK_APP_KEY: '3031368753769688' #gibberish
 FACEBOOK_APP_SECRET: '88888c9ac313cffe047a8be7420d32e9' #gibberish
 
@@ -20,6 +21,8 @@ BRAINTREE_MERCHANT_ID: '8gXxbvqtdXdXXshX'
 BRAINTREE_PUBLIC_KEY: 'vs3wXXXX689kbyvn'
 BRAINTREE_PRIVATE_KEY: 'f0e6a1f3XXXXXa7e78adc15f6fe7d21ac'
 
-
 MAILER_EMAIL: 'XXXX@gmail.com'
+MAILER_PASSWORD: 'XxxxX'
+
+MAILER_MAIL: 'why@gmail.com'
 MAILER_PASSWORD: 'XxxxX'
