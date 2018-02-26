@@ -1,7 +1,5 @@
 class UsersController < Clearance::UsersController
 
-<<<<<<< HEAD
-=======
   def new
     @user = User.new
   end
@@ -24,7 +22,6 @@ class UsersController < Clearance::UsersController
 		redirect_to "/sign_in"
 	end
 
->>>>>>> feature/email
   def user_listing
     @user_listings = current_user.listings
   end
