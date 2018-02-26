@@ -76,3 +76,5 @@ gem 'braintree'
 gem 'figaro'
 
 gem 'sidekiq'
+
+gem 'rails_12factor', group: :production
