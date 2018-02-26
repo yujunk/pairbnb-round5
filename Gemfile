@@ -76,4 +76,3 @@ gem 'braintree'
 gem 'figaro'
 
 gem 'sidekiq'
-

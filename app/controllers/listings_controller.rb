@@ -22,6 +22,8 @@ class ListingsController < ApplicationController
 	end
 
 	def index
+		#UserMailer.welcome_email(current_user).deliver_now #Directly with Action Mailer
+		UserJobJob.perform_now(current_user) #through Active Jobs
 		if params[:search]
 			@listings = Listing.where(location: params[:search])
 		else

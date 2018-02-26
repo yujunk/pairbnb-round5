@@ -1,7 +1,8 @@
 class UserJobJob < ApplicationJob
   queue_as :default
 
-  def perform(*users)
-    # Do something later
+  def perform(user)
+    @user = user
+    UserMailer.welcome_email(@user).deliver
   end
 end

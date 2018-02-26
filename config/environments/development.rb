@@ -29,6 +29,10 @@ Rails.application.configure do
   # Don't care if the mailer can't send.
   config.action_mailer.raise_delivery_errors = false
 
+  # To test if we can actually send mails! - Not necessary
+  #config.action_mailer.raise_delivery_errors = true # for test
+  #config.action_mailer.perform_deliveries = true
+
   config.action_mailer.perform_caching = false
 
   # Print deprecation notices to the Rails logger.
