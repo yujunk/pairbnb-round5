@@ -74,3 +74,6 @@ gem 'fog'
 gem 'braintree'
 
 gem 'figaro'
+
+gem 'sidekiq'
+

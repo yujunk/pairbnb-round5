@@ -6,6 +6,12 @@ class UserMailer < ApplicationMailer
     @user = user
     @url  = 'http://google.com' 
     mail(to: @user.email, subject: 'Welcome to My Awesome Site')
+
+
+    ##For full name:
+    #email_with_name = %("#{@user.name}" <#{@user.email}>)
+    #mail(to: email_with_name, subject: 'Welcome to My Awesome Site')
+
   end
 
 end
