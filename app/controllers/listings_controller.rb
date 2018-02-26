@@ -22,8 +22,11 @@ class ListingsController < ApplicationController
 	end
 
 	def index
-		#UserMailer.welcome_email(current_user).deliver_now #Directly with Action Mailer
-		UserJobJob.perform_now(current_user) #through Active Jobs
+		#UserMailer.welcome_email(current_user).deliver_now #Directly with Action Mailer - just .deliver_now
+		UserMailer.welcome_email(current_user).deliver_later(wait: 5.minutes) #Action Mailer > deliver_later > Sidekiq/Redis
+
+		#UserJob.perform_later(current_user) #Action Mailer in Active Jobs - not completely correct...
+
 		if params[:search]
 			@listings = Listing.where(location: params[:search])
 		else
