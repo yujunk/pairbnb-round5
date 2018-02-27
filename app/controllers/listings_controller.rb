@@ -27,6 +27,7 @@ class ListingsController < ApplicationController
 
 		#UserJob.perform_later(current_user) #Action Mailer in Active Jobs - not completely correct...
 
+		#METHOD 1: FORM TAG IMPLEMENTATION
 		if params[:search]
 			@listings = Listing.where(location: params[:search])
 		else
@@ -34,6 +35,22 @@ class ListingsController < ApplicationController
 		end
 
 		@listings = Listing.order(id: :desc).page params[:page]
+
+		#METHOD 2: FORM FOR IMPLEMENTATION (OBJECT)
+		@listings = Listing.where(nil)
+  	filtering_params(params).each do |key, value|
+  		# params = { controller: "listings", action: "serach", location: "Maysia"  }
+  		# slice - > {location: "Malaysia", price_per_night: 100 , smoking: "", user: ""}
+
+  		# @listings.location("Malaysia") - public_send - key = method, value = argument
+  		# @listings.price_per_night(100)
+    	@listings = @listings.public_send(key, value) if value.present?
+  		
+  	end
+		# @listings = @listings.user(params[:user]) if params[:user].present?
+		# @listings = @listings.price_per_night(params[:price_per_night]) if params[:price_per_night].present?
+		# @listings = @listings.smoking(params[:smoking]) if params[:smoking].present?
+
 
 		#http://api.rubyonrails.org/classes/ActiveRecord/QueryMethods.html#method-i-order
 		#https://github.com/amatsuda/kaminari
@@ -65,7 +82,7 @@ class ListingsController < ApplicationController
 		redirect_to listings_path
 	end
 
-	private
+private
 
 	def listing_params
 		#params.require(:listing).permit(:title, :description, :price_per_night, :smoking, :location)
@@ -79,6 +96,10 @@ class ListingsController < ApplicationController
 
 	def update_listing_params
 		params.require(:listing).permit(:title, :description, :price_per_night, :smoking, :location)
+	end
+
+	def filtering_params(params)
+  	params.slice(:location, :user, :smoking, :price_per_night)
 	end
 
 end

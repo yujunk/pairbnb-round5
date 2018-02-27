@@ -2,6 +2,7 @@
 user = {}
 user['password'] = 'asdf'
 
+#ActiveRecord::Base.transaction will rollback if there is an error (by raising an acception - create! or save!)
 ActiveRecord::Base.transaction do
   20.times do 
     user['name'] = Faker::Name.first_name 

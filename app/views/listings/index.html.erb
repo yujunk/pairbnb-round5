@@ -2,7 +2,7 @@ Create new listing <%= link_to "here", "/listings/new" %>
 
 <h2> All Listings </h2>
 
-<h5> Search By: </h5>
+<h5> Search By (Form Tag Imp): </h5>
 <%= form_tag listings_path, :method => 'get' do %>
   <p>
     Location: <%= text_field_tag :search, params[:search] %>
@@ -14,6 +14,17 @@ Create new listing <%= link_to "here", "/listings/new" %>
 <% end %>
 <!--OLD: http://railscasts.com/episodes/37-simple-search-form?autoplay=true -->
 <!--NEW: https://rubyplus.com/articles/3381-Simple-Search-Form-in-Rails-5 -->
+<br/>
+
+<h5> Search By (Form For Imp): </h5>
+<%= form_tag listings_path, :method => 'get' do |f| %>
+    Location: <%= text_field_tag :location, params[:location] %> <br/>
+    User: <%= text_field_tag :user, params[:user]  %> <br/>
+    Price Per Night: <%= text_field_tag :price_per_night, params[:price_per_night]  %> <br/>
+    Smoking: <%= text_field_tag :smoking, params[:smoking]  %>
+    <%= submit_tag "Search", :name => nil %>
+<% end %>
+<br/>
 
 <h5> All Listings </h5>
 
@@ -47,5 +58,5 @@ Create new listing <%= link_to "here", "/listings/new" %>
 		</tr>
 	<% end %>
 </table>
-<%= paginate @listings %>
+
 
