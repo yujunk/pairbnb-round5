@@ -21,3 +21,21 @@ Create new listing <%= link_to "here", new_listing_path %>
   View reservations on your listing <%= link_to "here", user_listing_path(current_user) %>
 <% end %>
 </p>
+
+<div class="dropdown show">
+  <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Dropdown link
+  </a>
+
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+    
+      <% Listing.all.each do |l| %>
+      <a class="dropdown-item" href="#"> 
+      <%= l.location %>
+      </a>
+      <% end %>
+    
+    <a class="dropdown-item" href="#">Another action</a>
+    <a class="dropdown-item" href="#">Something else here</a>
+  </div>
+</div>

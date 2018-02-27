@@ -4,7 +4,7 @@ class Listing < ApplicationRecord
 
   has_many :reservations
 
-  scope :location, -> (location) { where location: location }
+  # scope :location, -> (location) { where location: location }
   # SAME AS:
   # def location(location)
   #   where(location: location)

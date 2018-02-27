@@ -16,9 +16,46 @@ Create new listing <%= link_to "here", "/listings/new" %>
 <!--NEW: https://rubyplus.com/articles/3381-Simple-Search-Form-in-Rails-5 -->
 <br/>
 
-<h5> Search By (Form For Imp): </h5>
+<!-- <h5> Search By (Form For Imp): </h5> -->
 <%= form_tag listings_path, :method => 'get' do |f| %>
-    Location: <%= text_field_tag :location, params[:location] %> <br/>
+    <!-- Location: <%= text_field_tag :location, params[:location] %> <br/> -->
+
+  <div class="dropdown show">
+    <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Location </a>
+
+    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+      
+        <% Listing.all.each do |l| %>
+        <a class="dropdown-item" href="#"> 
+        <%= l.location %>
+        </a>
+        <% end %>
+    </div>
+  </div>
+
+  <br/>
+
+  <!-- Doesnt work to filter: -->
+  <%= select_tag 'location', options_from_collection_for_select(Listing.all.select(:location).uniq, :id, :location) %> 
+  <!-- Pluck doesnt work here -->
+    
+  <!-- This works -->
+  <%= select_tag 'location', options_for_select(Listing.all.pluck(:location).uniq), {include_blank: 'Select City'} %>
+  
+  <br/>
+
+  <!-- Trying to use bootstrap -->
+  <div class="dropdown show">
+    <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Location </a>
+
+    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+        <a class="dropdown-item" href="#"> 
+        <%= options_for_select(Listing.all.pluck(:location).uniq) %>
+        </a>
+    </div>
+  </div>
+
+  <br/>
     User: <%= text_field_tag :user, params[:user]  %> <br/>
     Price Per Night: <%= text_field_tag :price_per_night, params[:price_per_night]  %> <br/>
     Smoking: <%= text_field_tag :smoking, params[:smoking]  %>
