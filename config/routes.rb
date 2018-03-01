@@ -33,5 +33,7 @@ Rails.application.routes.draw do
   get "/users/:user_id/listings" => "users#user_listing", as: "user_listing"
 
   post '/listings/:listing_id/reservations/payments/checkout' => "payments#checkout", controller: "payments", as: "payments_checkout"
+
+  post 'search', to: "listings#search"
   
 end

@@ -78,3 +78,5 @@ gem 'figaro'
 gem 'sidekiq'
 
 gem 'rails_12factor', group: :production
+
+gem 'pg_search'

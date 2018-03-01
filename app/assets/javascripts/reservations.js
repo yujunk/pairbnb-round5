@@ -1,8 +1,8 @@
 // import flatpickr from "flatpickr";
 // const flatpickr = require("flatpickr");
 
-
-document.addEventListener('turbolinks:load',function(){
+                                            // or function()
+document.addEventListener('turbolinks:load',function(event){
 
   startDate = document.getElementById("reservation_start_date");
   endDate = document.getElementById("reservation_end_date");

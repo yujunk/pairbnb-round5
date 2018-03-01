@@ -27,7 +27,7 @@ class ListingsController < ApplicationController
 
 		#UserJob.perform_later(current_user) #Action Mailer in Active Jobs - not completely correct...
 
-		#METHOD 1: FORM TAG IMPLEMENTATION
+		#METHOD 1: FORM TAG IMPLEMENTATION (PARAMS & BASIC)
 		if params[:search]
 			@listings = Listing.where(location: params[:search])
 		else
@@ -36,7 +36,10 @@ class ListingsController < ApplicationController
 
 		@listings = Listing.order(id: :desc).page params[:page]
 
-		#METHOD 2: FORM FOR IMPLEMENTATION (OBJECT)
+		#http://api.rubyonrails.org/classes/ActiveRecord/QueryMethods.html#method-i-order
+		#https://github.com/amatsuda/kaminari
+
+		#METHOD 2: FORM TAG IMPLEMENTATION (USING SCOPES)
 		@listings = Listing.where(nil)
   	filtering_params(params).each do |key, value|
   		# params = { controller: "listings", action: "serach", location: "Maysia"  }
@@ -47,13 +50,13 @@ class ListingsController < ApplicationController
     	@listings = @listings.public_send(key, value) if value.present?
   		
   	end
-		# @listings = @listings.user(params[:user]) if params[:user].present?
-		# @listings = @listings.price_per_night(params[:price_per_night]) if params[:price_per_night].present?
-		# @listings = @listings.smoking(params[:smoking]) if params[:smoking].present?
 
+  	#METHOD 3: PGSEARCH GEM - STATIC
+  	@listings = Listing.search_by_title(params[:title])
 
-		#http://api.rubyonrails.org/classes/ActiveRecord/QueryMethods.html#method-i-order
-		#https://github.com/amatsuda/kaminari
+  	#METHOD 4: PGSEARCH GEM - DYNAMIC
+  	@listings = Listing.search_by(:location, params[:search_by])
+		
 	end
 
 	## Before refactoring:
@@ -81,6 +84,12 @@ class ListingsController < ApplicationController
 
 		redirect_to listings_path
 	end
+
+	def search
+    cities = Listing.search_location(params["query"])
+    render json: cities 
+    #for renderring the results from the params
+  end
 
 private
 

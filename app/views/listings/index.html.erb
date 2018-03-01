@@ -2,7 +2,8 @@ Create new listing <%= link_to "here", "/listings/new" %>
 
 <h2> All Listings </h2>
 
-<h5> Search By (Form Tag Imp): </h5>
+<!-- METHOD 1 -->
+<h5> Search By (METHOD 1): </h5>
 <%= form_tag listings_path, :method => 'get' do %>
   <p>
     Location: <%= text_field_tag :search, params[:search] %>
@@ -16,7 +17,8 @@ Create new listing <%= link_to "here", "/listings/new" %>
 <!--NEW: https://rubyplus.com/articles/3381-Simple-Search-Form-in-Rails-5 -->
 <br/>
 
-<!-- <h5> Search By (Form For Imp): </h5> -->
+<!-- METHOD 2 -->
+<h5> Search By (METHOD 2): </h5>
 <%= form_tag listings_path, :method => 'get' do |f| %>
     <!-- Location: <%= text_field_tag :location, params[:location] %> <br/> -->
 
@@ -62,6 +64,33 @@ Create new listing <%= link_to "here", "/listings/new" %>
     <%= submit_tag "Search", :name => nil %>
 <% end %>
 <br/>
+<br/>
+
+<!-- METHOD 3 -->
+<h5> Search By (METHOD 3): </h5>
+<%= form_tag listings_path, :method => 'get' do %>
+  <p>
+    Title: <%= text_field_tag :title, params[:title] %>
+                          <!-- ^method name, ^value that will appear that you typed previously -->
+    <%= submit_tag "Search", :name => nil%>
+    <!-- params[:search] is to make sure form field stays after search is performend. 
+    :name => nil is making sure the URL comes back with no commit="xxx" -->
+  </p>
+<% end %>
+<br/>
+<br/>
+
+<!-- METHOD 4 -->
+<h5> Search By (METHOD 4): </h5>
+<%= form_tag listings_path, :method => 'get' do %>
+  <p>
+    Title: <%= text_field_tag :search_by, params[:search_by] %>
+                          <!-- ^method name, ^value that will appear that you typed previously -->
+    <%= submit_tag "Search", :name => nil%>
+    <!-- params[:search] is to make sure form field stays after search is performend. 
+    :name => nil is making sure the URL comes back with no commit="xxx" -->
+  </p>
+<% end %>
 
 <h5> All Listings </h5>
 
