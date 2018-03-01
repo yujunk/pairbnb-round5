@@ -2,95 +2,19 @@ Create new listing <%= link_to "here", "/listings/new" %>
 
 <h2> All Listings </h2>
 
-<!-- METHOD 1 -->
-<h5> Search By (METHOD 1): </h5>
+<h5> Search </h5>
 <%= form_tag listings_path, :method => 'get' do %>
-  <p>
-    Location: <%= text_field_tag :search, params[:search] %>
-                          <!-- ^method name, ^value that will appear that you typed previously -->
-    <%= submit_tag "Search", :name => nil%>
-    <!-- params[:search] is to make sure form field stays after search is performend. 
-    :name => nil is making sure the URL comes back with no commit="xxx" -->
-  </p>
-<% end %>
-<!--OLD: http://railscasts.com/episodes/37-simple-search-form?autoplay=true -->
-<!--NEW: https://rubyplus.com/articles/3381-Simple-Search-Form-in-Rails-5 -->
-<br/>
-
-<!-- METHOD 2 -->
-<h5> Search By (METHOD 2): </h5>
-<%= form_tag listings_path, :method => 'get' do |f| %>
-    <!-- Location: <%= text_field_tag :location, params[:location] %> <br/> -->
-
-  <div class="dropdown show">
-    <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Location </a>
-
-    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-      
-        <% Listing.all.each do |l| %>
-        <a class="dropdown-item" href="#"> 
-        <%= l.location %>
-        </a>
-        <% end %>
-    </div>
-  </div>
-
+<%= hidden_field_tag :authenticity_token, form_authenticity_token %>
   <br/>
-
-  <!-- Doesnt work to filter: -->
-  <%= select_tag 'location', options_from_collection_for_select(Listing.all.select(:location).uniq, :id, :location) %> 
-  <!-- Pluck doesnt work here -->
-    
-  <!-- This works -->
-  <%= select_tag 'location', options_for_select(Listing.all.pluck(:location).uniq), {include_blank: 'Select City'} %>
-  
-  <br/>
-
-  <!-- Trying to use bootstrap -->
-  <div class="dropdown show">
-    <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Location </a>
-
-    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-        <a class="dropdown-item" href="#"> 
-        <%= options_for_select(Listing.all.pluck(:location).uniq) %>
-        </a>
-    </div>
-  </div>
-
-  <br/>
+    Location: <%= text_field_tag :location, params[:location]  %> <br/>
     User: <%= text_field_tag :user, params[:user]  %> <br/>
     Price Per Night: <%= text_field_tag :price_per_night, params[:price_per_night]  %> <br/>
     Smoking: <%= text_field_tag :smoking, params[:smoking]  %>
-    <%= submit_tag "Search", :name => nil %>
+    <%= submit_tag "Search", :name => nil, :id=>"button" %>
 <% end %>
 <br/>
 <br/>
 
-<!-- METHOD 3 -->
-<h5> Search By (METHOD 3): </h5>
-<%= form_tag listings_path, :method => 'get' do %>
-  <p>
-    Title: <%= text_field_tag :title, params[:title] %>
-                          <!-- ^method name, ^value that will appear that you typed previously -->
-    <%= submit_tag "Search", :name => nil%>
-    <!-- params[:search] is to make sure form field stays after search is performend. 
-    :name => nil is making sure the URL comes back with no commit="xxx" -->
-  </p>
-<% end %>
-<br/>
-<br/>
-
-<!-- METHOD 4 -->
-<h5> Search By (METHOD 4): </h5>
-<%= form_tag listings_path, :method => 'get' do %>
-  <p>
-    Title: <%= text_field_tag :search_by, params[:search_by] %>
-                          <!-- ^method name, ^value that will appear that you typed previously -->
-    <%= submit_tag "Search", :name => nil%>
-    <!-- params[:search] is to make sure form field stays after search is performend. 
-    :name => nil is making sure the URL comes back with no commit="xxx" -->
-  </p>
-<% end %>
 
 <h5> All Listings </h5>
 

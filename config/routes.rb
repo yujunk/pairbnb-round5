@@ -35,5 +35,7 @@ Rails.application.routes.draw do
   post '/listings/:listing_id/reservations/payments/checkout' => "payments#checkout", controller: "payments", as: "payments_checkout"
 
   post 'search', to: "listings#search"
+
+  post 'filter', to: "listings#filter"
   
 end
