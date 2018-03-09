@@ -32,7 +32,7 @@ Create new listing <%= link_to "here", "/listings/new" %>
     <th> Edit (Permissions needed) </th>
 	</tr>
 	<% @listings.each do |listing| %>
-		<tr>	
+		<tr id="list">	
 			<td> <%= listing.id %> </td>
 			<td> <%= listing.title %> </td>
 			<td> <%= listing.location %> </td>
@@ -43,10 +43,8 @@ Create new listing <%= link_to "here", "/listings/new" %>
       <td> <img src ="<%= listing.image_url.to_s %>" width="100" height="100"> </td>
       <td> <%= link_to 'Book', new_listing_reservations_path(listing) %></td>
 			<td> <%= link_to 'Edit', edit_listing_path(listing) %> </td>
-			<!-- they know to take the id only with (listing) when you insert it into the edit_listing_path Rails method, so if you look at listings controller, all you need to say is params[:id] to pass it to html -->
-
 		</tr>
-	<% end %>
+	<% end %> 
 </table>
 
 
