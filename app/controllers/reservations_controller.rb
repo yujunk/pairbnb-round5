@@ -17,7 +17,7 @@ class ReservationsController < ApplicationController
 
   def index
 
-    @user_reservations = User.find_by(params[:id]).reservations
+    @user_reservations = User.find(params[:user_id]).reservations
   
   end
 
